@@ -31,13 +31,10 @@ class Geschaeftswagen extends Produkt {
         this.parkplatz = parkplatz;
     }
 
-
     public
-    void display ( ) {
-        System.out.println ( "Name: " + getTitel ( ) );
-        System.out.println ( "Farbe: " + getBeschreibung ( ) );
-        System.out.println ( "Kilometerstand: " + kmStand );
-        System.out.println ( "Standort des Autos: " + parkplatz );
+    String toString ( ) {
+        String auto = "Name: " + getTitel ( ) + "\n" + "Farbe: " + getBeschreibung ( ) + "\n" + "Kilometerstand: " + kmStand + "\n" + "Standort des Autos: " + parkplatz;
+        return auto;
     }
 
 

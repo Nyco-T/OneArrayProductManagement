@@ -196,7 +196,7 @@ class Main {
                 System.out.println ( "\nGefundene Bücher:" );
                 for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
                     System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                    searchResults.get ( i ).display ( );
+                    searchResults.get ( i ).toString ( );
                     System.out.println ( "---------------------" );
                 }
             }
@@ -318,7 +318,7 @@ class Main {
                 System.out.println ( "\nGefundene Notebooks:" );
                 for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
                     System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                    searchResults.get ( i ).display ( );
+                    searchResults.get ( i ).toString ( );
                     System.out.println ( "---------------------" );
                 }
             }
@@ -436,7 +436,7 @@ class Main {
             System.out.println ( "\nGefundene Autos:" );
             for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
                 System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                searchResults.get ( i ).display ( );
+                searchResults.get ( i ).toString ( );
                 System.out.println ( "---------------------" );
             }
         }
@@ -451,7 +451,7 @@ class Main {
             System.out.println ( "\nGespeicherte Produkte:" );
             for ( int i = 0 ; i < produktListe.size ( ) ; i++ ) {
                 System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                produktListe.get ( i ).display ( );
+                produktListe.get ( i ).toString ( );
                 System.out.println ( "---------------------" );
             }
         }
@@ -466,13 +466,13 @@ class Main {
             System.out.println ( "\nGespeicherte Produkte:" );
             for ( Produkt produkt : produktListe ) {
                 if ( type.equals ( "buch" ) && produkt instanceof Buch buch ) {
-                    buch.display ( );
+                     System.out.println ( buch.toString ( ) );
                 }
                 else if ( type.equals ( "notebook" ) && produkt instanceof Notebook notebook ) {
-                    notebook.display ( );
+                    System.out.println ( notebook.toString ( ) );
                 }
                 else if ( type.equals ( "auto" ) && produkt instanceof Geschaeftswagen geschaeftswagen ) {
-                    geschaeftswagen.display ( );
+                    System.out.println ( geschaeftswagen.toString ( ) );
                 }
                 System.out.println ( "---------------------" );
             }
