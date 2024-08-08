@@ -3,7 +3,8 @@ package mercatis.com;
 import java.util.Date;
 
 public
-class Buch extends Produkt {
+class Buch extends Produkt
+{
     private       String autorVorname;
     private       String autorNachname;
     private       String buchSprache;
@@ -77,5 +78,7 @@ class Buch extends Produkt {
         return buch;
     }
 
+
 }
+
 

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public
 class Main {
@@ -51,7 +52,7 @@ class Main {
         System.out.println ( "1. Bücher verwalten" );
         System.out.println ( "2. Notebooks verwalten" );
         System.out.println ( "3. Geschäftswagen verwalten" );
-        System.out.println ( "4. Alle Prdukte anziegen" );
+        System.out.println ( "4. Alle Prdukte verwalten" );
         System.out.println ( "5. Beenden" );
         System.out.print ( "Wählen Sie eine Option: " );
     }
@@ -196,7 +197,7 @@ class Main {
                 System.out.println ( "\nGefundene Bücher:" );
                 for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
                     System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                    searchResults.get ( i ).toString ( );
+                    searchResults.get ( i ).display ( );
                     System.out.println ( "---------------------" );
                 }
             }
@@ -318,7 +319,7 @@ class Main {
                 System.out.println ( "\nGefundene Notebooks:" );
                 for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
                     System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                    searchResults.get ( i ).toString ( );
+                    searchResults.get ( i ).display ( );
                     System.out.println ( "---------------------" );
                 }
             }
@@ -436,7 +437,7 @@ class Main {
             System.out.println ( "\nGefundene Autos:" );
             for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
                 System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                searchResults.get ( i ).toString ( );
+                searchResults.get ( i ).display ( );
                 System.out.println ( "---------------------" );
             }
         }
@@ -444,6 +445,47 @@ class Main {
 
     private static
     void manageAllProducts ( ) {
+        boolean running = true;
+        while ( running ) {
+            productsDisplayMenu ( );
+            int choice = getProductMenuChoice ( );
+            switch ( choice ) {
+                case 1:
+                    manageProducts ( );
+                    break;
+                case 2:
+                    compareProducts ( );
+                    break;
+                case 5:
+                    running = false;
+                    System.out.println ( "Programm wird beendet. Auf Wiedersehen!" );
+                    break;
+                default:
+                    System.out.println ( "Ungültige Auswahl. Bitte versuchen Sie es erneut." );
+            }
+        }
+        scanner.close ( );
+    }
+
+    private static
+    void productsDisplayMenu ( ) {
+        System.out.println ( "\n--- Produktverwaltung ---" );
+        System.out.println ( "1. Alle Produkte anziegen" );
+        System.out.println ( "2. Duplikate finden" );
+        System.out.print ( "Wählen Sie eine Option: " );
+    }
+
+    private static
+    int getProductMenuChoice ( ) {
+        while ( ! scanner.hasNextInt ( ) ) {
+            System.out.println ( "Bitte geben Sie eine Zahl ein." );
+            scanner.next ( );
+        }
+        return scanner.nextInt ( );
+    }
+
+    private static
+    void manageProducts ( ) {
         if ( produktListe.isEmpty ( ) ) {
             System.out.println ( "Die Produktliste ist leer." );
         }
@@ -451,34 +493,70 @@ class Main {
             System.out.println ( "\nGespeicherte Produkte:" );
             for ( int i = 0 ; i < produktListe.size ( ) ; i++ ) {
                 System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                produktListe.get ( i ).toString ( );
+                produktListe.get ( i ).display ( );
                 System.out.println ( "---------------------" );
             }
         }
     }
-
     private static
-    void display ( String type ) {
-        if ( produktListe.isEmpty ( ) ) {
-            System.out.println ( "Die Produktliste ist leer." );
-        }
-        else {
-            System.out.println ( "\nGespeicherte Produkte:" );
-            for ( Produkt produkt : produktListe ) {
-                if ( type.equals ( "buch" ) && produkt instanceof Buch buch ) {
-                     System.out.println ( buch.toString ( ) );
+    void compareProducts ( ) {
+
+        class BuchComparator implements Comparator < Buch > {
+            public
+            int compare ( Buch b1 , Buch b2 ) {
+                return Comparator.comparing ( Buch::getIsbn )
+                        .compare ( b1 , b2 );
+            }
+
+            static
+            class NotebookComparator implements Comparator < Notebook > {
+                public
+                int compare ( Notebook n1 , Notebook n2 ) {
+                    return Comparator.comparing ( Notebook::getTitel )
+                            .thenComparing ( Notebook::getBeschreibung )
+                            .thenComparingInt ( Notebook::getSpeicherplatz )
+                            .thenComparing ( Notebook::getProzessor )
+                            .compare ( n1 , n2 );
                 }
-                else if ( type.equals ( "notebook" ) && produkt instanceof Notebook notebook ) {
-                    System.out.println ( notebook.toString ( ) );
+            }
+
+            static
+            class GeschaetfswagenComparator implements Comparator < Geschaeftswagen > {
+                public
+                int compare ( Geschaeftswagen a1 , Geschaeftswagen a2 ) {
+                    return Comparator.comparing ( Geschaeftswagen::getTitel )
+                            .thenComparing ( Geschaeftswagen::getBeschreibung )
+                            .thenComparingInt ( Geschaeftswagen::getKmStand )
+                            .thenComparing ( Geschaeftswagen::getParkplatz )
+                            .compare ( a1 , a2 );
                 }
-                else if ( type.equals ( "auto" ) && produkt instanceof Geschaeftswagen geschaeftswagen ) {
-                    System.out.println ( geschaeftswagen.toString ( ) );
-                }
-                System.out.println ( "---------------------" );
             }
         }
     }
+
+
+        private static
+        void display ( String type ){
+            if ( produktListe.isEmpty ( ) ) {
+                System.out.println ( "Die Produktliste ist leer." );
+            }
+            else {
+                System.out.println ( "\nGespeicherte Produkte:" );
+                for ( Produkt produkt : produktListe ) {
+                    if ( type.equals ( "buch" ) && produkt instanceof Buch buch ) {
+                        System.out.println ( buch );
+                    }
+                    else if ( type.equals ( "notebook" ) && produkt instanceof Notebook notebook ) {
+                        System.out.println ( notebook );
+                    }
+                    else if ( type.equals ( "auto" ) && produkt instanceof Geschaeftswagen geschaeftswagen ) {
+                        System.out.println ( geschaeftswagen );
+                    }
+                    System.out.println ( "---------------------" );
+                }
+            }
+        }
+
+
 }
-
-
 
