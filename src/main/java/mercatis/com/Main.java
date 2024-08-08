@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public
 class Main {
-    private static final Scanner                       scanner              = new Scanner ( System.in );
-    private static ArrayList <Produkt>                 produktListe         = new ArrayList <> (  );
-    private static       int                           fortlaufendenummer   = 1;
-    private static final SimpleDateFormat              dateFormat           = new SimpleDateFormat ( "dd.MM.yyyy" );
+    private static final Scanner               scanner            = new Scanner ( System.in );
+    private static       ArrayList < Produkt > produktListe       = new ArrayList <> ( );
+    private static       int                   fortlaufendenummer = 1;
+    private static final SimpleDateFormat      dateFormat         = new SimpleDateFormat ( "dd.MM.yyyy" );
 
 
     public static
@@ -76,7 +76,7 @@ class Main {
                     addBook ( );
                     break;
                 case 2:
-                    display ( "buch");
+                    display ( "buch" );
                     break;
                 case 3:
                     deleteBook ( );
@@ -178,25 +178,28 @@ class Main {
         String searchTerm = scanner.nextLine ( ).toLowerCase ( );
 
         ArrayList < Buch > searchResults = new ArrayList <> ( );
-        for ( Buch buch : produktListe ) {
-            if ( buch.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
-                 buch.getAutorVorname ( ).toLowerCase ( ).contains ( searchTerm ) ||
-                 buch.getAutorNachname ( ).toLowerCase ( ).contains ( searchTerm ) ||
-                 buch.getIsbn ( ).contains ( searchTerm ) ) {
-                searchResults.add ( buch );
+        for ( Produkt produkt : produktListe ) {
+            if ( produkt instanceof Buch ) {
+                Buch buch = (Buch) produkt;
+                if ( buch.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
+                     buch.getAutorVorname ( ).toLowerCase ( ).contains ( searchTerm ) ||
+                     buch.getAutorNachname ( ).toLowerCase ( ).contains ( searchTerm ) ||
+                     buch.getIsbn ( ).contains ( searchTerm ) ) {
+                    searchResults.add ( buch );
+                }
             }
-        }
 
 
-        if ( searchResults.isEmpty ( ) ) {
-            System.out.println ( "Keine Bücher gefunden." );
-        }
-        else {
-            System.out.println ( "\nGefundene Bücher:" );
-            for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
-                System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                searchResults.get ( i ).display ( );
-                System.out.println ( "---------------------" );
+            if ( searchResults.isEmpty ( ) ) {
+                System.out.println ( "Keine Bücher gefunden." );
+            }
+            else {
+                System.out.println ( "\nGefundene Bücher:" );
+                for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
+                    System.out.println ( "Buch " + ( i + 1 ) + ":" );
+                    searchResults.get ( i ).display ( );
+                    System.out.println ( "---------------------" );
+                }
             }
         }
     }
@@ -213,7 +216,7 @@ class Main {
                     addNotebook ( );
                     break;
                 case 2:
-                    display("notebook");
+                    display ( "notebook" );
                     break;
                 case 3:
                     deleteNotebook ( );
@@ -278,7 +281,7 @@ class Main {
             return;
         }
 
-        display("notebook" );
+        display ( "notebook" );
         System.out.print ( "Geben Sie die Nummer des zu löschenden Notebooks ein: " );
         int NotebookNumber = getMenuChoice ( );
 
@@ -299,24 +302,27 @@ class Main {
         String searchTerm = scanner.nextLine ( ).toLowerCase ( );
 
         ArrayList < Notebook > searchResults = new ArrayList <> ( );
-        for ( Notebook notebook : produktListe ) {
-            if ( notebook.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
-                 notebook.getBeschreibung ( ).toLowerCase ( ).contains ( searchTerm ) ||
-                 notebook.getProzessor ( ).toLowerCase ( ).contains ( searchTerm ) ) {
-                searchResults.add ( notebook );
+        for ( Produkt produkt : produktListe ) {
+            if ( produkt instanceof Notebook ) {
+                Notebook notebook = (Notebook) produkt;
+                if ( notebook.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
+                     notebook.getBeschreibung ( ).toLowerCase ( ).contains ( searchTerm ) ||
+                     notebook.getProzessor ( ).toLowerCase ( ).contains ( searchTerm ) ) {
+                    searchResults.add ( notebook );
+                }
             }
-        }
 
 
-        if ( searchResults.isEmpty ( ) ) {
-            System.out.println ( "Keine Notebooks gefunden." );
-        }
-        else {
-            System.out.println ( "\nGefundene Notebooks:" );
-            for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
-                System.out.println ( "Buch " + ( i + 1 ) + ":" );
-                searchResults.get ( i ).display ( );
-                System.out.println ( "---------------------" );
+            if ( searchResults.isEmpty ( ) ) {
+                System.out.println ( "Keine Notebooks gefunden." );
+            }
+            else {
+                System.out.println ( "\nGefundene Notebooks:" );
+                for ( int i = 0 ; i < searchResults.size ( ) ; i++ ) {
+                    System.out.println ( "Buch " + ( i + 1 ) + ":" );
+                    searchResults.get ( i ).display ( );
+                    System.out.println ( "---------------------" );
+                }
             }
         }
     }
@@ -332,7 +338,7 @@ class Main {
                     addWagen ( );
                     break;
                 case 2:
-                    display("auto");
+                    display ( "auto" );
                     break;
                 case 3:
                     deleteWagen ( );
@@ -382,8 +388,8 @@ class Main {
         int kmStand = scanner.nextInt ( );
         scanner.nextLine ( );
         System.out.print ( "Wo steht Ihr Auto?: " );
-        String          parkplatz = scanner.nextLine ( );
-        Geschaeftswagen geschaeftswagen      = new Geschaeftswagen ( fortlaufendenummer , titel , beschreibung , kmStand , parkplatz );
+        String          parkplatz       = scanner.nextLine ( );
+        Geschaeftswagen geschaeftswagen = new Geschaeftswagen ( fortlaufendenummer , titel , beschreibung , kmStand , parkplatz );
         produktListe.add ( geschaeftswagen );
         fortlaufendenummer++;
         System.out.println ( "Buch wurde erfolgreich hinzugefügt." );
@@ -416,11 +422,14 @@ class Main {
         String searchTerm = scanner.nextLine ( ).toLowerCase ( );
 
         ArrayList < Geschaeftswagen > searchResults = new ArrayList <> ( );
-        for ( Geschaeftswagen geschaeftswagen : produktListe ) {
-            if ( geschaeftswagen.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
-                 geschaeftswagen.getBeschreibung ( ).toLowerCase ( ).contains ( searchTerm ) ||
-                 geschaeftswagen.getParkplatz ( ).toLowerCase ( ).contains ( searchTerm ) ) {
-                searchResults.add ( geschaeftswagen );
+        for ( Produkt produkt : produktListe ) {
+            if ( produkt instanceof Geschaeftswagen ) {
+                Geschaeftswagen geschaeftswagen = (Geschaeftswagen) produkt;
+                if ( geschaeftswagen.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
+                     geschaeftswagen.getBeschreibung ( ).toLowerCase ( ).contains ( searchTerm ) ||
+                     geschaeftswagen.getParkplatz ( ).toLowerCase ( ).contains ( searchTerm ) ) {
+                    searchResults.add ( geschaeftswagen );
+                }
             }
         }
         if ( searchResults.isEmpty ( ) ) {
@@ -450,8 +459,9 @@ class Main {
             }
         }
     }
+
     private static
-    void display (String type) {
+    void display ( String type ) {
         if ( produktListe.isEmpty ( ) ) {
             System.out.println ( "Die Produktliste ist leer." );
         }
@@ -472,5 +482,6 @@ class Main {
         }
     }
 }
+
 
 
