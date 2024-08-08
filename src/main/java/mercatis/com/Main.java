@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public
 class Main {
     private static final Scanner               scanner            = new Scanner ( System.in );
-    private static       ArrayList < Produkt > produktListe       = new ArrayList <> ( );
+    private static final ArrayList < Produkt > produktListe       = new ArrayList <> ( );
     private static       int                   fortlaufendenummer = 1;
     private static final SimpleDateFormat      dateFormat         = new SimpleDateFormat ( "dd.MM.yyyy" );
 
@@ -179,8 +179,7 @@ class Main {
 
         ArrayList < Buch > searchResults = new ArrayList <> ( );
         for ( Produkt produkt : produktListe ) {
-            if ( produkt instanceof Buch ) {
-                Buch buch = (Buch) produkt;
+            if ( produkt instanceof Buch buch ) {
                 if ( buch.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
                      buch.getAutorVorname ( ).toLowerCase ( ).contains ( searchTerm ) ||
                      buch.getAutorNachname ( ).toLowerCase ( ).contains ( searchTerm ) ||
@@ -303,8 +302,7 @@ class Main {
 
         ArrayList < Notebook > searchResults = new ArrayList <> ( );
         for ( Produkt produkt : produktListe ) {
-            if ( produkt instanceof Notebook ) {
-                Notebook notebook = (Notebook) produkt;
+            if ( produkt instanceof Notebook notebook ) {
                 if ( notebook.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
                      notebook.getBeschreibung ( ).toLowerCase ( ).contains ( searchTerm ) ||
                      notebook.getProzessor ( ).toLowerCase ( ).contains ( searchTerm ) ) {
@@ -423,8 +421,7 @@ class Main {
 
         ArrayList < Geschaeftswagen > searchResults = new ArrayList <> ( );
         for ( Produkt produkt : produktListe ) {
-            if ( produkt instanceof Geschaeftswagen ) {
-                Geschaeftswagen geschaeftswagen = (Geschaeftswagen) produkt;
+            if ( produkt instanceof Geschaeftswagen geschaeftswagen ) {
                 if ( geschaeftswagen.getTitel ( ).toLowerCase ( ).contains ( searchTerm ) ||
                      geschaeftswagen.getBeschreibung ( ).toLowerCase ( ).contains ( searchTerm ) ||
                      geschaeftswagen.getParkplatz ( ).toLowerCase ( ).contains ( searchTerm ) ) {
