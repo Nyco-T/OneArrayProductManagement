@@ -505,7 +505,7 @@ class Main {
             public
             int compare ( Buch b1 , Buch b2 ) {
                 return Comparator.comparing ( Buch::getIsbn )
-                        .compare ( b1 , b2 );
+                                 .compare ( b1 , b2 );
             }
 
             static
@@ -513,10 +513,10 @@ class Main {
                 public
                 int compare ( Notebook n1 , Notebook n2 ) {
                     return Comparator.comparing ( Notebook::getTitel )
-                            .thenComparing ( Notebook::getBeschreibung )
-                            .thenComparingInt ( Notebook::getSpeicherplatz )
-                            .thenComparing ( Notebook::getProzessor )
-                            .compare ( n1 , n2 );
+                                     .thenComparing ( Notebook::getBeschreibung )
+                                     .thenComparingInt ( Notebook::getSpeicherplatz )
+                                     .thenComparing ( Notebook::getProzessor )
+                                     .compare ( n1 , n2 );
                 }
             }
 
@@ -525,10 +525,10 @@ class Main {
                 public
                 int compare ( Geschaeftswagen a1 , Geschaeftswagen a2 ) {
                     return Comparator.comparing ( Geschaeftswagen::getTitel )
-                            .thenComparing ( Geschaeftswagen::getBeschreibung )
-                            .thenComparingInt ( Geschaeftswagen::getKmStand )
-                            .thenComparing ( Geschaeftswagen::getParkplatz )
-                            .compare ( a1 , a2 );
+                                     .thenComparing ( Geschaeftswagen::getBeschreibung )
+                                     .thenComparingInt ( Geschaeftswagen::getKmStand )
+                                     .thenComparing ( Geschaeftswagen::getParkplatz )
+                                     .compare ( a1 , a2 );
                 }
             }
         }
