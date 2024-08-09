@@ -497,8 +497,8 @@ class Main {
     void simpleDetactDuplicate ( ) {
                     boolean running = true;
                     while ( running ) {
-                        deleteMenu ( );
-                        int choice = getDeleteMenuChoice ( );
+                        duplicateMenu ( );
+                        int choice = getDuplikateMenuChoice ( );
                         switch ( choice ) {
                             case 1:
                                 deleteDuplicate ( );
@@ -518,7 +518,7 @@ class Main {
 
 
     private static
-    void deleteMenu ( ) {
+    void duplicateMenu ( ) {
         System.out.println ( "\n--- Was soll mit dem Duplikat passieren? ---" );
         System.out.println ( "1. Duplikat löschen" );
         System.out.println ( "2. Duplikat anzeigen" );
@@ -527,7 +527,7 @@ class Main {
     }
 
     private static
-    int getDeleteMenuChoice ( ) {
+    int getDuplikateMenuChoice ( ) {
         while ( ! scanner.hasNextInt ( ) ) {
             System.out.println ( "Bitte geben Sie eine Zahl ein." );
             scanner.next ( );
