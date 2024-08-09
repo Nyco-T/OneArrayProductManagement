@@ -464,7 +464,7 @@ class Main {
     void productsDisplayMenu ( ) {
         System.out.println ( "\n--- Produktverwaltung ---" );
         System.out.println ( "1. Alle Produkte anziegen" );
-        System.out.println ( "2. Duplikat löschen" );
+        System.out.println ( "2. Duplikate Verwalten" );
         System.out.println ( "3. Zurück zum Menü" );
         System.out.print ( "Wählen Sie eine Option: " );
     }
@@ -495,17 +495,79 @@ class Main {
 
     private static
     void simpleDetactDuplicate ( ) {
+                    boolean running = true;
+                    while ( running ) {
+                        deleteMenu ( );
+                        int choice = getDeleteMenuChoice ( );
+                        switch ( choice ) {
+                            case 1:
+                                deleteDuplicate ( );
+                                break;
+                            case 2:
+                                showDuplicate ( );
+                                break;
+                            case 3:
+                                running = false;
+                                break;
+                            default:
+                                System.out.println ( "Ungültige Auswahl. Bitte versuchen Sie es erneut." );
+                        }
+                    }
+                }
+
+
+
+    private static
+    void deleteMenu ( ) {
+        System.out.println ( "\n--- Was soll mit dem Duplikat passieren? ---" );
+        System.out.println ( "1. Duplikat löschen" );
+        System.out.println ( "2. Duplikat anzeigen" );
+        System.out.println ( "3. Zurück zum Menü" );
+        System.out.print ( "Wählen Sie eine Option: " );
+    }
+
+    private static
+    int getDeleteMenuChoice ( ) {
+        while ( ! scanner.hasNextInt ( ) ) {
+            System.out.println ( "Bitte geben Sie eine Zahl ein." );
+            scanner.next ( );
+        }
+        return scanner.nextInt ( );
+    }
+
+    private static
+    void deleteDuplicate ( ) {
         for ( int i = 0 ; i < produktListe.size ( ) ; i++ ) {
             Produkt produkt = produktListe.get ( i );
             for ( int j = i + 1 ; j < produktListe.size ( ) ; j++ ) {
                 Produkt produktCheck = produktListe.get ( j );
-                if(produkt.equals ( produktCheck )) {
+                if ( produkt.equals ( produktCheck ) ) {
                     produktListe.remove ( produktCheck );
-                    System.out.println ( "Duplikat wurde entfernt" );
+                    System.out.println ( "Duplikat erfolgreich gelöscht" );
                 }
             }
         }
     }
+
+    private static
+    void showDuplicate ( ) {
+        for ( int i = 0 ; i < produktListe.size ( ) ; i++ ) {
+            Produkt produkt = produktListe.get ( i );
+            for ( int j = i + 1 ; j < produktListe.size ( ) ; j++ ) {
+                Produkt produktCheck = produktListe.get ( j );
+                if ( produkt.equals ( produktCheck ) ) {
+                    System.out.println ( produkt );
+                    System.out.println ( "----------------" );
+                    System.out.println ( produktCheck );
+                }
+            }
+        }
+    }
+
+
+
+
+
 
 //    private static                                            //andere Methode um jeweils ein Duplikat anzuzeigen
 //    void detactDuplicate ( ) {
