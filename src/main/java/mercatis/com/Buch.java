@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public
 class Buch extends Produkt {
-    private String autorVorname;
-    private String autorNachname;
-    private String buchSprache;
-    private String isbn;
-    private Date   erscheinungsdatum;
+    private final String autorVorname;
+    private final String autorNachname;
+    private final String buchSprache;
+    private final String isbn;
+    private final Date   erscheinungsdatum;
 
 
     public
@@ -22,15 +22,9 @@ class Buch extends Produkt {
         this.erscheinungsdatum = erscheinungsdatum;
     }
 
-
     public
     String getAutorVorname ( ) {
         return autorVorname;
-    }
-
-    public
-    void setAutorVorname ( String Avorname ) {
-        this.autorVorname = autorVorname;
     }
 
     public
@@ -39,44 +33,13 @@ class Buch extends Produkt {
     }
 
     public
-    void setAutorNachname ( String autorNachname ) {
-        this.autorNachname = autorNachname;
-    }
-
-    public
-    String getBuchSprache ( ) {
-        return buchSprache;
-    }
-
-    public
-    void setBuchSprache ( String buchSprache ) {
-        this.buchSprache = buchSprache;
-    }
-
-    public
     String getIsbn ( ) {
         return isbn;
     }
 
     public
-    void setIsbn ( String isbn ) {
-        this.isbn = isbn;
-    }
-
-    public
-    Date getErscheinungsdatum ( ) {
-        return erscheinungsdatum;
-    }
-
-    public
-    void setErscheinungsdatum ( Date erscheinungsdatum ) {
-        this.erscheinungsdatum = erscheinungsdatum;
-    }
-
-    public
     String toString ( ) {
-        String buch = "Titel: " + getTitel ( ) + "\n" + "Beschreibung: " + getBeschreibung ( ) + "\n" + "Autor: " + autorVorname + " " + autorNachname + "\n" + "Sprache: " + buchSprache + "\n" + "ISBN: " + isbn + "\n" + "Erscheinungsdatum: " + erscheinungsdatum;
-        return buch;
+        return "Titel: " + getTitel ( ) + "\n" + "Beschreibung: " + getBeschreibung ( ) + "\n" + "Autor: " + autorVorname + " " + autorNachname + "\n" + "Sprache: " + buchSprache + "\n" + "ISBN: " + isbn + "\n" + "Erscheinungsdatum: " + erscheinungsdatum;
     }
 
     @Override

@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public
 class Notebook extends Produkt{
-    private         int    speicherplatz;
-    private         String prozessor;
+    private final int    speicherplatz;
+    private final String prozessor;
 
     public
     Notebook (int fortlaufendenummer, String titel, String beschreibung, int speicherplatz , String prozessor ) {
@@ -15,29 +15,14 @@ class Notebook extends Produkt{
 
     }
 
-
-    public
-    int getSpeicherplatz ( ) { return speicherplatz; }
-
-    public
-    void setSpeicherplatz ( int speicherplatz ) {
-        this.speicherplatz = speicherplatz;
-    }
-
     public
     String getProzessor ( ) {
         return prozessor;
     }
 
     public
-    void setProzessor ( String prozessor ) {
-        this.prozessor = prozessor;
-    }
-
-    public
     String toString ( ) {
-        String notebook = "Titel: " + getTitel ( ) + "\n" + "Beschreibung: " + getBeschreibung ( ) + "\n" + "Größe des Speichers: " + speicherplatz + "\n" + "Prozessor: " + prozessor;
-        return notebook;
+        return "Titel: " + getTitel ( ) + "\n" + "Beschreibung: " + getBeschreibung ( ) + "\n" + "Größe des Speichers: " + speicherplatz + "\n" + "Prozessor: " + prozessor;
     }
 
     @Override
