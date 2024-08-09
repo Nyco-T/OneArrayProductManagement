@@ -45,12 +45,12 @@ class Notebook extends Produkt{
     boolean equals ( Object object ) {
         if ( this == object ) return true;
         if ( ! ( object instanceof Notebook notebook ) ) return false;
-        return Objects.equals ( titel , notebook.titel ) ;
+        return speicherplatz == notebook.speicherplatz && Objects.equals ( prozessor , notebook.prozessor ) && Objects.equals ( titel , notebook.titel ) && Objects.equals ( beschreibung , notebook.beschreibung );
     }
 
     @Override
     public
     int hashCode ( ) {
-        return Objects.hash ( titel );
+        return Objects.hash ( speicherplatz , prozessor , titel , beschreibung );
     }
 }

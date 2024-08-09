@@ -464,7 +464,7 @@ class Main {
     void productsDisplayMenu ( ) {
         System.out.println ( "\n--- Produktverwaltung ---" );
         System.out.println ( "1. Alle Produkte anziegen" );
-        System.out.println ( "2. Duplikat finden" );
+        System.out.println ( "2. Duplikat löschen" );
         System.out.println ( "3. Zurück zum Menü" );
         System.out.print ( "Wählen Sie eine Option: " );
     }
@@ -500,8 +500,7 @@ class Main {
             for ( int j = i + 1 ; j < produktListe.size ( ) ; j++ ) {
                 Produkt produktCheck = produktListe.get ( j );
                 if(produkt.equals ( produktCheck )) {
-                    System.out.println ( "Duplikat gefunden:" );
-                    System.out.println(produktCheck);
+                    produktListe.remove ( produktCheck );
                 }
             }
         }

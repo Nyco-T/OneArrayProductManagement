@@ -43,11 +43,11 @@ class Geschaeftswagen extends Produkt {
     boolean equals ( Object object ) {
         if ( this == object ) return true;
         if ( ! ( object instanceof Geschaeftswagen geschaeftswagen ) ) return false;
-        return Objects.equals ( titel , geschaeftswagen.titel ) ;
+        return kmStand == geschaeftswagen.kmStand && Objects.equals ( parkplatz , geschaeftswagen.parkplatz ) && Objects.equals ( titel , geschaeftswagen.titel ) && Objects.equals ( beschreibung , geschaeftswagen.beschreibung );
     }
 
     public
     int hashCode ( ) {
-        return Objects.hash ( titel );
+        return Objects.hash ( kmStand , parkplatz , titel , beschreibung );
     }
 }
