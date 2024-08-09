@@ -32,12 +32,10 @@ class Produkt {
     void setBeschreibung ( String beschreibung ) {
         this.beschreibung = beschreibung;
     }
-
     public
-    void display ( ) {
-        System.out.println ( "Nummer: " + fortlaufendenummer );
-        System.out.println ( "Titel: " + titel );
-        System.out.println ( "Beschreibung: " + beschreibung );
+    String toString ( ) {
+        String produkt = "Titel: " + titel + "\n" + "Beschreibung: " + beschreibung ;
+        return produkt;
     }
 
 }

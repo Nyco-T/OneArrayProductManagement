@@ -22,6 +22,7 @@ class Buch extends Produkt {
         this.erscheinungsdatum = erscheinungsdatum;
     }
 
+
     public
     String getAutorVorname ( ) {
         return autorVorname;

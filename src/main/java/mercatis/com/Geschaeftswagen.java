@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public
 class Geschaeftswagen extends Produkt {
-    private       int    kmStand;
-    private       String parkplatz;
+    private         int    kmStand;
+    private         String parkplatz;
 
     public
     Geschaeftswagen (int fortlaufendenummer, String titel, String beschreibung, int kmStand , String parkplatz ) {
@@ -43,11 +43,11 @@ class Geschaeftswagen extends Produkt {
     boolean equals ( Object object ) {
         if ( this == object ) return true;
         if ( ! ( object instanceof Geschaeftswagen geschaeftswagen ) ) return false;
-        return kmStand == geschaeftswagen.kmStand && Objects.equals ( parkplatz , geschaeftswagen.parkplatz ) && Objects.equals ( titel , geschaeftswagen.titel ) && Objects.equals ( beschreibung , geschaeftswagen.beschreibung );
+        return Objects.equals ( titel , geschaeftswagen.titel ) ;
     }
 
     public
     int hashCode ( ) {
-        return Objects.hash ( kmStand , parkplatz , titel , beschreibung );
+        return Objects.hash ( titel );
     }
 }

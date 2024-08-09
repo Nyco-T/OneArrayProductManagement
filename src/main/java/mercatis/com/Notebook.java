@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public
 class Notebook extends Produkt{
-    private       int    speicherplatz;
-    private       String prozessor;
+    private         int    speicherplatz;
+    private         String prozessor;
 
     public
     Notebook (int fortlaufendenummer, String titel, String beschreibung, int speicherplatz , String prozessor ) {
@@ -45,12 +45,12 @@ class Notebook extends Produkt{
     boolean equals ( Object object ) {
         if ( this == object ) return true;
         if ( ! ( object instanceof Notebook notebook ) ) return false;
-        return speicherplatz == notebook.speicherplatz && Objects.equals ( prozessor , notebook.prozessor ) && Objects.equals ( titel , notebook.titel ) && Objects.equals ( beschreibung , notebook.beschreibung );
+        return Objects.equals ( titel , notebook.titel ) ;
     }
 
     @Override
     public
     int hashCode ( ) {
-        return Objects.hash ( speicherplatz , prozessor , titel , beschreibung );
+        return Objects.hash ( titel );
     }
 }
