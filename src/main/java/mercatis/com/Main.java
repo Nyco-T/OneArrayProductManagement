@@ -501,6 +501,7 @@ class Main {
                 Produkt produktCheck = produktListe.get ( j );
                 if(produkt.equals ( produktCheck )) {
                     produktListe.remove ( produktCheck );
+                    System.out.println ( "Duplikat wurde entfernt" );
                 }
             }
         }
