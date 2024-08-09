@@ -2,9 +2,9 @@ package mercatis.com;
 
 public
 class Produkt {
-    private final int    fortlaufendenummer;
-    private       String titel;
-    private       String beschreibung;
+    protected final int    fortlaufendenummer;
+    protected        String titel;
+    protected        String beschreibung;
 
     public
     Produkt ( int fortlaufendenummer , String titel , String beschreibung ) {

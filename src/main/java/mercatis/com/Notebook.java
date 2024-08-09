@@ -1,5 +1,7 @@
 package mercatis.com;
 
+import java.util.Objects;
+
 public
 class Notebook extends Produkt{
     private       int    speicherplatz;
@@ -38,4 +40,17 @@ class Notebook extends Produkt{
         return notebook;
     }
 
+    @Override
+    public
+    boolean equals ( Object object ) {
+        if ( this == object ) return true;
+        if ( ! ( object instanceof Notebook notebook ) ) return false;
+        return speicherplatz == notebook.speicherplatz && Objects.equals ( prozessor , notebook.prozessor ) && Objects.equals ( titel , notebook.titel ) && Objects.equals ( beschreibung , notebook.beschreibung );
+    }
+
+    @Override
+    public
+    int hashCode ( ) {
+        return Objects.hash ( speicherplatz , prozessor , titel , beschreibung );
+    }
 }

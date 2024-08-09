@@ -1,5 +1,7 @@
 package mercatis.com;
 
+import java.util.Objects;
+
 public
 class Geschaeftswagen extends Produkt {
     private       int    kmStand;
@@ -37,5 +39,15 @@ class Geschaeftswagen extends Produkt {
         return auto;
     }
 
+    public
+    boolean equals ( Object object ) {
+        if ( this == object ) return true;
+        if ( ! ( object instanceof Geschaeftswagen geschaeftswagen ) ) return false;
+        return kmStand == geschaeftswagen.kmStand && Objects.equals ( parkplatz , geschaeftswagen.parkplatz ) && Objects.equals ( titel , geschaeftswagen.titel ) && Objects.equals ( beschreibung , geschaeftswagen.beschreibung );
+    }
 
+    public
+    int hashCode ( ) {
+        return Objects.hash ( kmStand , parkplatz , titel , beschreibung );
+    }
 }

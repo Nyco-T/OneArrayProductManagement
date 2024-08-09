@@ -1,25 +1,25 @@
 package mercatis.com;
 
 import java.util.Date;
+import java.util.Objects;
 
 public
-class Buch extends Produkt
-{
-    private       String autorVorname;
-    private       String autorNachname;
-    private       String buchSprache;
-    private       String isbn;
-    private       Date   erscheinungsdatum;
+class Buch extends Produkt {
+    private String autorVorname;
+    private String autorNachname;
+    private String buchSprache;
+    private String isbn;
+    private Date   erscheinungsdatum;
 
 
     public
-    Buch (int fortlaufendenummer, String titel, String beschreibung, String autorVorname , String autorNachname , String buchSprache , String isbn , Date erscheinungsdatum ) {
-        super(fortlaufendenummer, titel, beschreibung );
-        this.autorVorname       = autorVorname;
-        this.autorNachname      = autorNachname;
-        this.buchSprache        = buchSprache;
-        this.isbn               = isbn;
-        this.erscheinungsdatum  = erscheinungsdatum;
+    Buch ( int fortlaufendenummer , String titel , String beschreibung , String autorVorname , String autorNachname , String buchSprache , String isbn , Date erscheinungsdatum ) {
+        super ( fortlaufendenummer , titel , beschreibung );
+        this.autorVorname      = autorVorname;
+        this.autorNachname     = autorNachname;
+        this.buchSprache       = buchSprache;
+        this.isbn              = isbn;
+        this.erscheinungsdatum = erscheinungsdatum;
     }
 
     public
@@ -76,6 +76,20 @@ class Buch extends Produkt
     String toString ( ) {
         String buch = "Titel: " + getTitel ( ) + "\n" + "Beschreibung: " + getBeschreibung ( ) + "\n" + "Autor: " + autorVorname + " " + autorNachname + "\n" + "Sprache: " + buchSprache + "\n" + "ISBN: " + isbn + "\n" + "Erscheinungsdatum: " + erscheinungsdatum;
         return buch;
+    }
+
+    @Override
+    public
+    boolean equals ( Object object ) {
+        if ( this == object ) return true;
+        if ( ! ( object instanceof Buch buch ) ) return false;
+        return Objects.equals  ( isbn , buch.isbn );
+    }
+
+    @Override
+    public
+    int hashCode ( ) {
+        return Objects.hash ( isbn );
     }
 
 
